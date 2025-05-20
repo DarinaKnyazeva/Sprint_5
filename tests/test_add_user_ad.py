@@ -1,7 +1,6 @@
 import random
 import string
 
-from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -69,14 +68,9 @@ class TestAddUserAd:
 
         driver.find_element(By.XPATH, log_in_button).click()
 
-        try:
-            WebDriverWait(driver, 5).until(
-                expected_conditions.presence_of_element_located((By.XPATH, create_ad_button)))
-            driver.find_element(By.XPATH, create_ad_button).click()
-        except StaleElementReferenceException:
-            WebDriverWait(driver, 10).until(
-                expected_conditions.presence_of_element_located((By.XPATH, create_ad_button)))
-            driver.find_element(By.XPATH, create_ad_button).click()
+        WebDriverWait(driver, 5).until(
+            expected_conditions.presence_of_element_located((By.XPATH, create_ad_button)))
+        driver.find_element(By.XPATH, create_ad_button).click()
 
         WebDriverWait(driver, 5).until(
             expected_conditions.visibility_of_element_located((By.XPATH, create_ad_name_input)))
@@ -101,21 +95,12 @@ class TestAddUserAd:
 
         driver.find_element(By.XPATH, post_button).click()
 
-        try:
-            WebDriverWait(driver, 5).until(
-                expected_conditions.element_to_be_clickable((By.XPATH, user_img)))
-            driver.find_element(By.XPATH, user_img).click()
-        except StaleElementReferenceException:
-            WebDriverWait(driver, 10).until(
-                expected_conditions.element_to_be_clickable((By.XPATH, user_img)))
-            driver.find_element(By.XPATH, user_img).click()
+        WebDriverWait(driver, 5).until(
+            expected_conditions.element_to_be_clickable((By.XPATH, user_img)))
+        driver.find_element(By.XPATH, user_img).click()
 
-        try:
-            WebDriverWait(driver, 5).until(
-                expected_conditions.visibility_of_element_located((By.XPATH, my_ad_card)))
-        except StaleElementReferenceException:
-            WebDriverWait(driver, 10).until(
-                expected_conditions.visibility_of_element_located((By.XPATH, my_ad_card)))
+        WebDriverWait(driver, 10).until(
+            expected_conditions.visibility_of_element_located((By.XPATH, my_ad_card)))
 
         assert len(driver.find_elements(By.XPATH, my_ad_card)) == 1
 

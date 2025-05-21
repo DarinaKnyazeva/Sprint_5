@@ -6,12 +6,12 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from conftest import save_random_email, driver, generate_random_email
-from locators import registration_button, non_account_button, registration_password_input, \
-    registration_submitPassword_input, user_img, registration_email_input, submit_button, \
-    log_out_button, log_in_button, create_ad_button, authorization_alarm_text, \
-    authorization_alarm_form, create_ad_name_input, create_ad_description, create_price_input, \
-    good_and_city_category_dropdown, \
-    category_books, category_city_spb, used_radio_button, post_button, my_ad_card
+from locators import REGISTRATION_BUTTON, NON_ACCOUNT_BUTTON, REGISTRATION_PASSWORD_INPUT, \
+    REGISTRATION_SUBMIT_PASSWORD_INPUT, USER_IMG, REGISTRATION_EMAIL_INPUT, SUBMIT_BUTTON, \
+    LOG_OUT_BUTTON, LOG_IN_BUTTON, CREATE_AD_BUTTON, AUTHORIZATION_ALARM_TEXT, \
+    AUTHORIZATION_ALARM_FORM, CREATE_AD_NAME_INPUT, CREATE_AD_DESCRIPTION, CREATE_PRICE_INPUT, \
+    GOOD_AND_CITY_CATEGORY_DROPDOWN, \
+    CATEGORY_BOOKS, CATEGORY_CITY_SPB, USED_RADIO_BUTTON, POST_BUTTON, MY_AD_CARD
 
 
 class TestAddUserAd:
@@ -19,89 +19,85 @@ class TestAddUserAd:
     def test_create_ad_non_authorization_user(self, driver, generate_random_email):
         driver.get("https://qa-desk.stand.praktikum-services.ru/")
 
-        driver.find_element(By.XPATH, create_ad_button).click()
+        driver.find_element(By.XPATH, CREATE_AD_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, authorization_alarm_text)))
+            expected_conditions.visibility_of_element_located((By.XPATH, AUTHORIZATION_ALARM_TEXT)))
 
-        assert len(driver.find_elements(By.XPATH, authorization_alarm_form)) == 1
+        assert len(driver.find_elements(By.XPATH, AUTHORIZATION_ALARM_FORM)) == 1
         assert driver.find_element(By.XPATH,
-                                   authorization_alarm_text).text == 'Чтобы разместить объявление, авторизуйтесь'
-
-        driver.quit()
+                                   AUTHORIZATION_ALARM_TEXT).text == 'Чтобы разместить объявление, авторизуйтесь'
 
     def test_create_ad_authorization_user(self, driver, save_random_email):
         driver.get("https://qa-desk.stand.praktikum-services.ru/")
 
         random_price = random.randrange(100, 1000)
 
-        driver.find_element(By.XPATH, registration_button).click()
+        driver.find_element(By.XPATH, REGISTRATION_BUTTON).click()
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, non_account_button)))
+            expected_conditions.visibility_of_element_located((By.XPATH, NON_ACCOUNT_BUTTON)))
 
-        driver.find_element(By.XPATH, non_account_button).click()
-
-        WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, registration_email_input)))
-
-        driver.find_element(By.XPATH, registration_email_input).send_keys(save_random_email)
-        driver.find_element(By.XPATH, registration_password_input).send_keys("1234")
-        driver.find_element(By.XPATH, registration_submitPassword_input).send_keys("1234")
-
-        driver.find_element(By.XPATH, submit_button).click()
+        driver.find_element(By.XPATH, NON_ACCOUNT_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, log_out_button)))
+            expected_conditions.visibility_of_element_located((By.XPATH, REGISTRATION_EMAIL_INPUT)))
 
-        driver.find_element(By.XPATH, log_out_button).click()
+        driver.find_element(By.XPATH, REGISTRATION_EMAIL_INPUT).send_keys(save_random_email)
+        driver.find_element(By.XPATH, REGISTRATION_PASSWORD_INPUT).send_keys("1234")
+        driver.find_element(By.XPATH, REGISTRATION_SUBMIT_PASSWORD_INPUT).send_keys("1234")
 
-        WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, registration_button)))
-
-        driver.find_element(By.XPATH, registration_button).click()
-
-        WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, log_in_button)))
-
-        driver.find_element(By.XPATH, registration_email_input).send_keys(save_random_email)
-        driver.find_element(By.XPATH, registration_password_input).send_keys("1234")
-
-        driver.find_element(By.XPATH, log_in_button).click()
+        driver.find_element(By.XPATH, SUBMIT_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.presence_of_element_located((By.XPATH, create_ad_button)))
-        driver.find_element(By.XPATH, create_ad_button).click()
+            expected_conditions.visibility_of_element_located((By.XPATH, LOG_OUT_BUTTON)))
+
+        driver.find_element(By.XPATH, LOG_OUT_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, create_ad_name_input)))
+            expected_conditions.visibility_of_element_located((By.XPATH, REGISTRATION_BUTTON)))
 
-        driver.find_element(By.XPATH, create_ad_name_input).send_keys(
+        driver.find_element(By.XPATH, REGISTRATION_BUTTON).click()
+
+        WebDriverWait(driver, 5).until(
+            expected_conditions.visibility_of_element_located((By.XPATH, LOG_IN_BUTTON)))
+
+        driver.find_element(By.XPATH, REGISTRATION_EMAIL_INPUT).send_keys(save_random_email)
+        driver.find_element(By.XPATH, REGISTRATION_PASSWORD_INPUT).send_keys("1234")
+
+        driver.find_element(By.XPATH, LOG_IN_BUTTON).click()
+
+        WebDriverWait(driver, 5).until(
+            expected_conditions.presence_of_element_located((By.XPATH, CREATE_AD_BUTTON)))
+        driver.find_element(By.XPATH, CREATE_AD_BUTTON).click()
+
+        WebDriverWait(driver, 5).until(
+            expected_conditions.visibility_of_element_located((By.XPATH, CREATE_AD_NAME_INPUT)))
+
+        driver.find_element(By.XPATH, CREATE_AD_NAME_INPUT).send_keys(
             ''.join(random.choices(string.ascii_lowercase, k=10)))
-        driver.find_element(By.XPATH, create_ad_description).send_keys(
+        driver.find_element(By.XPATH, CREATE_AD_DESCRIPTION).send_keys(
             (''.join(random.choices(string.ascii_lowercase, k=20))))
-        driver.find_element(By.XPATH, create_price_input).send_keys(str(random_price))
+        driver.find_element(By.XPATH, CREATE_PRICE_INPUT).send_keys(str(random_price))
 
-        category_good_and_city = driver.find_elements(By.XPATH, good_and_city_category_dropdown)
+        category_good_and_city = driver.find_elements(By.XPATH, GOOD_AND_CITY_CATEGORY_DROPDOWN)
         category_good_and_city[0].click()
-        driver.find_element(By.XPATH, category_books).click()
+        driver.find_element(By.XPATH, CATEGORY_BOOKS).click()
 
         category_good_and_city[1].click()
-        driver.find_element(By.XPATH, category_city_spb).click()
+        driver.find_element(By.XPATH, CATEGORY_CITY_SPB).click()
 
-        driver.find_element(By.XPATH, used_radio_button).click()
-
-        WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, post_button)))
-
-        driver.find_element(By.XPATH, post_button).click()
+        driver.find_element(By.XPATH, USED_RADIO_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.element_to_be_clickable((By.XPATH, user_img)))
-        driver.find_element(By.XPATH, user_img).click()
+            expected_conditions.visibility_of_element_located((By.XPATH, POST_BUTTON)))
+
+        driver.find_element(By.XPATH, POST_BUTTON).click()
+
+        WebDriverWait(driver, 5).until(
+            expected_conditions.element_to_be_clickable((By.XPATH, USER_IMG)))
+        driver.find_element(By.XPATH, USER_IMG).click()
 
         WebDriverWait(driver, 10).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, my_ad_card)))
+            expected_conditions.visibility_of_element_located((By.XPATH, MY_AD_CARD)))
 
-        assert len(driver.find_elements(By.XPATH, my_ad_card)) == 1
-
-        driver.quit()
+        assert len(driver.find_elements(By.XPATH, MY_AD_CARD)) == 1

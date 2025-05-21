@@ -1,45 +1,47 @@
-registration_button = ".//button[text()='Вход и регистрация']"
+REGISTRATION_BUTTON = ".//button[text()='Вход и регистрация']"
 
-non_account_button = ".//button[@class='buttonSecondary inButtonText undefined inButtonText'][text()='Нет аккаунта']"
+NON_ACCOUNT_BUTTON = ".//button[@class='buttonSecondary inButtonText undefined inButtonText'][text()='Нет аккаунта']"
 
-registration_email_input = ".//input[@class='input_inputStandart__JweLZ spanGlobal'][@name='email']"
+REGISTRATION_EMAIL_INPUT = ".//input[@class='input_inputStandart__JweLZ spanGlobal'][@name='email']"
 
-registration_password_input = ".//input[@name='password']"
+REGISTRATION_PASSWORD_INPUT = ".//input[@name='password']"
 
-registration_submitPassword_input = ".//input[@name='submitPassword']"
+REGISTRATION_SUBMIT_PASSWORD_INPUT = ".//input[@name='submitPassword']"
 
-submit_button = ".//button[@class='buttonPrimary inButtonText undefined inButtonText'][text()='Создать аккаунт']"
+SUBMIT_BUTTON = ".//button[@class='buttonPrimary inButtonText undefined inButtonText'][text()='Создать аккаунт']"
 
-user_img = ".//button[@class='circleSmall']"
+USER_IMG = ".//button[@class='circleSmall']"
 
-account_user_name = ".//div[@class='columnSmall']/h3[@class='profileText name']"
+ACCOUNT_USER_NAME = ".//div[@class='columnSmall']/h3[@class='profileText name']"
 
-email_validation_error = ".//span[@class='input_span__yWPqB']"
+EMAIL_VALIDATION_ERROR = ".//span[@class='input_span__yWPqB']"
 
-log_out_button = ".//div[@class='columnSmall']/button[@class='spanGlobal btnSmall']"
+LOG_OUT_BUTTON = ".//div[@class='columnSmall']/button[@class='spanGlobal btnSmall']"
 
-log_in_button = ".//button[@class='buttonPrimary inButtonText undefined inButtonText'][text()='Войти']"
+LOG_IN_BUTTON = ".//button[@class='buttonPrimary inButtonText undefined inButtonText'][text()='Войти']"
 
-create_ad_button = ".//button[text()='Разместить объявление']"
+CREATE_AD_BUTTON = ".//button[text()='Разместить объявление']"
 
-authorization_alarm_text = ".//div[@class='popUp_titleRow__M7tGg']/h1[text()='Чтобы разместить объявление, авторизуйтесь']"
+AUTHORIZATION_ALARM_TEXT = ".//div[@class='popUp_titleRow__M7tGg']/h1[text()='Чтобы разместить объявление, авторизуйтесь']"
 
-authorization_alarm_form = ".//form[@class='popUp_shell__LuyqR']"
+AUTHORIZATION_ALARM_FORM = ".//form[@class='popUp_shell__LuyqR']"
 
-create_ad_name_input = ".//div[@class='input_inputDefault__UmPK0']/input[@name='name']"
+CREATE_AD_NAME_INPUT = ".//div[@class='input_inputDefault__UmPK0']/input[@name='name']"
 
-create_ad_description = ".//div[@class='textarea_inputDefault__KvlMg']/textarea[@name='description']"
+CREATE_AD_DESCRIPTION = ".//div[@class='textarea_inputDefault__KvlMg']/textarea[@name='description']"
 
-create_price_input = ".//div[@class='input_inputDefault__UmPK0']/input[@name='price']"
+CREATE_PRICE_INPUT = ".//div[@class='input_inputDefault__UmPK0']/input[@name='price']"
 
-good_and_city_category_dropdown = ".//button[@class='dropDownMenu_arrowDown__pfGL1 dropDownMenu_noDefault__wSKsP']"
+GOOD_AND_CITY_CATEGORY_DROPDOWN = ".//button[@class='dropDownMenu_arrowDown__pfGL1 dropDownMenu_noDefault__wSKsP']"
 
-category_books = ".//span[@class='undefined dropDownMenu_textColor__Nyo8k'][text()='Книги']"
+CATEGORY_BOOKS = ".//span[@class='undefined dropDownMenu_textColor__Nyo8k'][text()='Книги']"
 
-category_city_spb = ".//span[@class='undefined dropDownMenu_textColor__Nyo8k'][text()='Санкт-Петербург']"
+CATEGORY_CITY_SPB = ".//span[@class='undefined dropDownMenu_textColor__Nyo8k'][text()='Санкт-Петербург']"
 
-used_radio_button = ".//div[@class='radioUnput_shell__Wtdwe']/div[@class='radioUnput_inputRegular__FbVbr']"
+USED_RADIO_BUTTON = ".//div[@class='radioUnput_shell__Wtdwe']/div[@class='radioUnput_inputRegular__FbVbr']"
 
-post_button = ".//button[@class='buttonPrimary inButtonText undefined inButtonText'][text()='Опубликовать']"
+POST_BUTTON = ".//button[@class='buttonPrimary inButtonText undefined inButtonText'][text()='Опубликовать']"
 
-my_ad_card = ".//div[@class='card']"
+MY_AD_CARD = ".//div[@class='card']"
+
+ERROR_ELEMENTS = ".input_inputError__fLUP9"

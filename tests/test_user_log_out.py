@@ -3,9 +3,9 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from conftest import generate_random_email, save_random_email, driver
-from locators import registration_button, non_account_button, registration_password_input, \
-    registration_submitPassword_input, account_user_name, user_img, registration_email_input, submit_button, \
-    log_out_button
+from locators import REGISTRATION_BUTTON, NON_ACCOUNT_BUTTON, REGISTRATION_PASSWORD_INPUT, \
+    REGISTRATION_SUBMIT_PASSWORD_INPUT, ACCOUNT_USER_NAME, USER_IMG, REGISTRATION_EMAIL_INPUT, SUBMIT_BUTTON, \
+    LOG_OUT_BUTTON
 
 
 class TestUserLogOut:
@@ -13,34 +13,32 @@ class TestUserLogOut:
     def test_user_log_out(self, driver, generate_random_email, save_random_email):
         driver.get("https://qa-desk.stand.praktikum-services.ru/")
 
-        driver.find_element(By.XPATH, registration_button).click()
+        driver.find_element(By.XPATH, REGISTRATION_BUTTON).click()
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, non_account_button)))
+            expected_conditions.visibility_of_element_located((By.XPATH, NON_ACCOUNT_BUTTON)))
 
-        driver.find_element(By.XPATH, non_account_button).click()
-
-        WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, registration_email_input)))
-
-        driver.find_element(By.XPATH, registration_email_input).send_keys(save_random_email)
-        driver.find_element(By.XPATH, registration_password_input).send_keys("1234")
-        driver.find_element(By.XPATH, registration_submitPassword_input).send_keys("1234")
-
-        driver.find_element(By.XPATH, submit_button).click()
+        driver.find_element(By.XPATH, NON_ACCOUNT_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, log_out_button)))
+            expected_conditions.visibility_of_element_located((By.XPATH, REGISTRATION_EMAIL_INPUT)))
 
-        driver.find_element(By.XPATH, log_out_button).click()
+        driver.find_element(By.XPATH, REGISTRATION_EMAIL_INPUT).send_keys(save_random_email)
+        driver.find_element(By.XPATH, REGISTRATION_PASSWORD_INPUT).send_keys("1234")
+        driver.find_element(By.XPATH, REGISTRATION_SUBMIT_PASSWORD_INPUT).send_keys("1234")
+
+        driver.find_element(By.XPATH, SUBMIT_BUTTON).click()
 
         WebDriverWait(driver, 5).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, registration_button)))
+            expected_conditions.visibility_of_element_located((By.XPATH, LOG_OUT_BUTTON)))
 
-        user_name = driver.find_elements(By.XPATH, account_user_name)
-        img = driver.find_elements(By.XPATH, user_img)
+        driver.find_element(By.XPATH, LOG_OUT_BUTTON).click()
 
-        assert driver.find_element(By.XPATH, registration_button).text == 'Вход и регистрация'
+        WebDriverWait(driver, 5).until(
+            expected_conditions.visibility_of_element_located((By.XPATH, REGISTRATION_BUTTON)))
+
+        user_name = driver.find_elements(By.XPATH, ACCOUNT_USER_NAME)
+        img = driver.find_elements(By.XPATH, USER_IMG)
+
+        assert driver.find_element(By.XPATH, REGISTRATION_BUTTON).text == 'Вход и регистрация'
         assert len(user_name) == 0
         assert len(img) == 0
-
-        driver.quit()

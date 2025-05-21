@@ -23,4 +23,5 @@ def save_random_email(generate_random_email):
 @pytest.fixture
 def driver():
     driver_instance = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    return driver_instance
+    yield driver_instance
+    driver_instance.quit()
